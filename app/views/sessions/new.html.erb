@@ -1,7 +1,6 @@
 <style type="text/css">
   .user {
     display: inline-block;
-    border: 1px black solid;
     text-align: left;
     vertical-align: top;
     margin: 20px;
@@ -10,35 +9,18 @@
 </style>
 
 
-<h1>Welcome</h1>
+<h1>Login</h1>
+
+<% if flash[:errors] %>
+    <h4><%=flash[:errors]%></h4>
+<%end%>
 
 <div class="user">
-  <h1>Registration</h1>
-  <form method="post" action="/users">
-    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-    <label>First Name: <input type="text" name="user[first_name]"></label><br>
-    <label>Last Name: <input type="text" name="user[last_name]"></label><br>
-    <label>Email: <input type="text" name="user[email]"></label><br>
-    <label>Location: <input type="text" name="user[city]">
-        <select name="user[state]">
-          <option value="CA">CA</option>
-          <option value="HI">HI</option>
-          <option value="AZ">AZ</option>
-        </select>
-    </label><br>
-    <label>Password: <input type="text" name="user[password]"></label><br>
-    <p>*Password should be at least 8 characters.</p>
-    <label>Confirm PW: <input type="text" name="user[password_confirmation]"></label><br>
-    <input type="submit" value="Register">
-  </form>
-</div>
-
-<div class="user">
-  <h1>Login</h1>
-  <form method="post" action="/sessions/new">
+  <form method="post" action="/sessions">
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
     <label>Email: <input type="text" name="email"></label><br>
     <label>Password: <input type="text" name="password"></label><br>
     <input type="submit" value="Log In">
   </form>
+  <a href="/online_lending/register">Click here to register</a>
 </div>

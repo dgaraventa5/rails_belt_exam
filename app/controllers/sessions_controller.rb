@@ -5,14 +5,33 @@ class SessionsController < ApplicationController
 
   # login
   def create
-  	@user = User.find_by(email: params[:email])
-    if @user.authenticate(params[:password]) == false
-      redirect_to "/"
+  	@borrower = Borrower.find_by(email: params[:email])
+
+    if @borrower
+    	if @borrower.authenticate(params[:password]) == false
+        flash[:errors] = "Wrong password."
+    		redirect_to "/online_lending/login"
+    	else
+    		session[:user_id] = @borrower.id
+    		redirect_to "/online_lending/borrower/#{@borrower.id}"
+    	end
     else
-      session[:user_id] = @user.id
-      redirect_to "/events"
+      @lender = Lender.find_by(email: params[:email])
+      if @lender
+        if @lender.authenticate(params[:password]) == false
+          flash[:errors] = "Wrong password."
+          redirect_to "/online_lending/login"
+        else
+          session[:user_id] = @lender.id
+          redirect_to "/online_lending/lender/#{@lender.id}"
+        end
+      else
+        flash[:errors] = "Email doesn't exist."
+        redirect_to "/online_lending/login"
+      end
     end
   end
+
 
   # logout 
   def destroy
