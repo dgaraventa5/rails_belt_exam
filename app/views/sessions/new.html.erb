@@ -1,2 +1,44 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<style type="text/css">
+  .user {
+    display: inline-block;
+    border: 1px black solid;
+    text-align: left;
+    vertical-align: top;
+    margin: 20px;
+    padding: 15px;
+  }
+</style>
+
+
+<h1>Welcome</h1>
+
+<div class="user">
+  <h1>Registration</h1>
+  <form method="post" action="/users">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <label>First Name: <input type="text" name="user[first_name]"></label><br>
+    <label>Last Name: <input type="text" name="user[last_name]"></label><br>
+    <label>Email: <input type="text" name="user[email]"></label><br>
+    <label>Location: <input type="text" name="user[city]">
+        <select name="user[state]">
+          <option value="CA">CA</option>
+          <option value="HI">HI</option>
+          <option value="AZ">AZ</option>
+        </select>
+    </label><br>
+    <label>Password: <input type="text" name="user[password]"></label><br>
+    <p>*Password should be at least 8 characters.</p>
+    <label>Confirm PW: <input type="text" name="user[password_confirmation]"></label><br>
+    <input type="submit" value="Register">
+  </form>
+</div>
+
+<div class="user">
+  <h1>Login</h1>
+  <form method="post" action="/sessions/new">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <label>Email: <input type="text" name="email"></label><br>
+    <label>Password: <input type="text" name="password"></label><br>
+    <input type="submit" value="Log In">
+  </form>
+</div>
