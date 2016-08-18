@@ -4,7 +4,7 @@ class LendersController < ApplicationController
 		@lender = Lender.new(lender_params)
 		if @lender.save
 			session[:user_id] = @lender.id
-			redirect_to "/online_lending/lender/<%=@lender.id%>" 
+			redirect_to "/online_lending/lender/#{lender.id}" 
 		else
 			flash[:lender_errors] = @lender.errors.full_messages
 			redirect_to "/online_lending/register"

@@ -7,7 +7,7 @@ class BorrowersController < ApplicationController
 		@borrower = Borrower.new(borrower_params)
 		if @borrower.save
 			session[:user_id] = @borrower.id
-			redirect_to "/online_lending/borrower/<%=@borrower.id%>"
+			redirect_to "/online_lending/borrower/#{@borrower.id}"
 		else
 			flash[:borrower_errors] = @borrower.errors.full_messages
 			redirect_to "/online_lending/register"
