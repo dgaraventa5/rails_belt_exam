@@ -16,7 +16,12 @@
 		<%end%>
 		<p><a href="/users/<%=post.user.id%>"><%=post.user.alias%></a> says:</p>
 		<p><%=post.content%></p>
-		<p><a data-method="post" name="post_id" href="/likes/<%=post.id%>">Like</a> | <a href="/bright_ideas/<%=post.id%>"> <%=post.num_of_likes%> people</a> like this.</p>
+		<p><% if post.users_liked.include?(current_user)%>
+				You like this.
+			<%else%>
+				<a data-method="post" name="post_id" href="/likes/<%=post.id%>">Like</a>
+			<%end%>
+		 | <a href="/bright_ideas/<%=post.id%>"> <%=post.num_of_likes%> people</a> like this.</p>
 	</div>
 	<%end%>
 <%end%>
