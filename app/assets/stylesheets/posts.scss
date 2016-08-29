@@ -1,0 +1,20 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#new-post{
+	width: 250px;
+	height: 30px;
+	font-size: 16px;
+	margin-bottom: 50px;
+}
+#new-post-button {
+	font-size: 16px;
+}
+.delete-post{
+	margin-left: 200px;
+}
+.post-div {
+	border: 1px solid black;
+	width: 400px;
+}

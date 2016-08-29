@@ -8,19 +8,36 @@
   }
 </style>
 
-
-<h1>Login</h1>
-
-<% if flash[:errors] %>
-    <h4><%=flash[:errors]%></h4>
-<%end%>
+<h1>Welcome!</h1>
 
 <div class="user">
-  <form method="post" action="/works">
+  <h1>Register</h1>
+  <% if flash[:register_errors]
+    flash[:register_errors].each do |e|%>
+    <h4><%=e%></h4>
+    <%end
+  end%>
+  <form method="post" action="/users">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <label>Name: <input type="text" name="user[name]"></label><br>
+    <label>Alias: <input type="text" name="user[alias]"></label><br>
+    <label>Email: <input type="text" name="user[email]"></label><br>
+    <label>Password: <input type="password" name="user[password]"></label><br>
+    <label>Confirm PW: <input type="password" name="user[password_confirmation]"></label>
+    <input type="submit" value="Register">
+  </form>
+</div>
+
+<div class="user">
+  <h1>Login</h1>
+  <% if flash[:login_errors] %>
+      <h4><%=flash[:login_errors]%></h4>
+  <%end%>
+  <form method="post" action="/sessions">
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
     <label>Email: <input type="text" name="email"></label><br>
-    <label>Password: <input type="text" name="password"></label><br>
+    <label>Password: <input type="password" name="password"></label><br>
     <input type="submit" value="Log In">
   </form>
-  <a href="">Click here to register</a>
 </div>
+

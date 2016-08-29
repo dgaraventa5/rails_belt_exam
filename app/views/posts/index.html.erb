@@ -1,0 +1,24 @@
+<a class="header" href="logout">Logout</a>
+
+<h1>Hi, <%=@user.alias%>!</h1>
+
+<form method="post" action="/posts">
+	<input  name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<input id="new-post" placeholder="Post something witty here..." type="text" name="content">
+	<input id="new-post-button" type="submit" value="Idea!">
+</form>
+
+<% if @posts
+	@posts.each do |post| %>
+	<div class="post-div">
+		<%if post.user == current_user %>
+			<a class="delete-post" data-method="delete" href="/posts/<%=post.id%>">Delete Post</a>	
+		<%end%>
+		<p><a href="/users/<%=post.user.id%>"><%=post.user.alias%></a> says:</p>
+		<p><%=post.content%></p>
+		<p><a data-method="post" name="post_id" href="/likes/<%=post.id%>">Like</a> | <a href="/bright_ideas/<%=post.id%>"> <%=post.num_of_likes%> people</a> like this.</p>
+	</div>
+	<%end%>
+<%end%>
+
+
