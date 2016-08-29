@@ -1,33 +1,6 @@
 Rails.application.routes.draw do
   
-  root 'borrowers#new'
-
-  post 'lenders' => 'lenders#create'
-  post 'borrowers' => 'borrowers#create'
-
-  post 'histories' => 'histories#create'
-
-  get 'online_lending/register' => 'borrowers#new'
-  get 'online_lending/borrower/:id' => 'borrowers#show'
-  
-
-  post 'sessions' => 'sessions#create'
-  get 'online_lending/lender/:id' => 'lenders#show'
-  get 'online_lending/login' => 'sessions#new'
-  
-
-
-  get 'sessions/new'
-  get 'sessions/destroy'
-
-  
-
- 
-  
-
-
-
- 
+  root 'sessions#new'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

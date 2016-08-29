@@ -13,38 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160818190050) do
 
-  create_table "borrowers", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.integer  "money"
-    t.string   "purpose"
-    t.text     "description"
-    t.integer  "raised"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
 
-  create_table "histories", force: :cascade do |t|
-    t.integer  "amount"
-    t.integer  "lender_id"
-    t.integer  "borrower_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "histories", ["borrower_id"], name: "index_histories_on_borrower_id"
-  add_index "histories", ["lender_id"], name: "index_histories_on_lender_id"
-
-  create_table "lenders", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.integer  "money"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
 
 end
