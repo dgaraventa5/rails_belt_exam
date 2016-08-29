@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def show
+  end
   # login
   def create
   	@borrower = Borrower.find_by(email: params[:email])
